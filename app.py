@@ -12,10 +12,8 @@ from utils.loggging import logging
 app = Flask(__name__)
 
 
-
-
 # Home page with registration form
-@app.route('/register/', methods=['GET', 'POST'])
+@app.route('chainapp/register/', methods=['GET', 'POST'])
 def home():
     try:
         db_conn = PgConn()
@@ -78,8 +76,7 @@ def home():
         logging.error(e)
 
 
-
-@app.route('/send_message')
+@app.route('chainapp/send_message')
 def send_message():
     try:
         db_conn = PgConn()
