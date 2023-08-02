@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, abort
 import requests
 import time
 from db.db import PgConn
@@ -12,57 +12,66 @@ app = Flask(__name__)
 # Home page with registration form
 @app.route('/register/', methods=['GET', 'POST'])
 def home():
-    db_conn = PgConn()
+    try:
+        db_conn = PgConn()
 
-    if request.method == 'GET':
-        data = request.args.to_dict()
-        code = data['c']
-        code_time, user_id = db_conn.get_sec_code_time(code)
-        now = time.time()
+        if request.method == 'GET':
+            data = request.args.to_dict()
+            code = data['c']
+            # user_info = db_conn.get_sec_code_time(code)
+            # if user_info is None:
 
-        if code_time >= now:
+            code_time, user_id = db_conn.get_sec_code_time(code)
             now = time.time()
-            code_time = now + REG_PAGE_TIME * 60
-            db_conn.update_user_sec_info(user_id, code_time)
 
-            fields = db_conn.get_fields()
+            if code_time >= now:
+                now = time.time()
+                code_time = now + REG_PAGE_TIME * 60
+                db_conn.update_user_sec_info(user_id, code_time)
 
-            # return render_template('index.html', user_id=user_id)
+                fields = db_conn.get_fields()
 
-            return render_template('index2.html', user_id=user_id, fields=fields)
+                # return render_template('index.html', user_id=user_id)
 
-        return render_template('return.html')
+                return render_template('regFlask/index2.html', user_id=user_id, fields=fields)
 
-    elif request.method == 'POST':
-        firstname = request.form['firstname']
-        lastname = request.form['lastname']
-        midname = request.form['midname']
-        role = request.form['role']
-        email = request.form['email']
-        phone = request.form['phone']
-        soc_link = request.form['socLink']
-        user_id = request.form['userId']
+            return render_template('regFlask/return.html', bot=BOT_USERNAME)
 
-        field = request.form.getlist('field')
-        field = [int(f) for f in field]
+        elif request.method == 'POST':
+            firstname = request.form['firstname']
+            lastname = request.form['lastname']
+            midname = request.form['midname']
+            role = request.form['role']
+            email = request.form['email']
+            phone = request.form['phone']
+            soc_link = request.form['socLink']
+            user_id = request.form['userId']
 
-        code, code_time = db_conn.get_user_sec_info(user_id)
-        now = time.time()
-        if code_time >= now:
+            field = request.form.getlist('field')
+            field = [int(f) for f in field]
 
-            db_conn.update_user(user_id, firstname, lastname, midname, role, email, phone, soc_link)
+            code, code_time = db_conn.get_user_sec_info(user_id)
+            now = time.time()
+            if code_time >= now:
 
-            if role == "Startupper":
-                startupp_name = request.form['startupName']
-                startupp_desc = request.form['startupDescription']
+                db_conn.update_user(user_id, firstname, lastname, midname, role, email, phone, soc_link)
 
-                db_conn.add_startup(user_id, startupp_name, startupp_desc)
+                if role == "Startupper":
+                    startupp_name = request.form['startupName']
+                    startupp_desc = request.form['startupDescription']
 
-            db_conn.set_field(user_id, field)
+                    db_conn.add_startup(user_id, startupp_name, startupp_desc)
 
-            return render_template('success.html', code=code)
+                db_conn.set_field(user_id, field)
 
-        return render_template('return.html', bot=BOT_USERNAME)
+                return render_template('regFlask/success.html', code=code)
+
+            return render_template('regFlask/return.html', bot=BOT_USERNAME)
+    except TypeError:
+        abort(400)
+    except Exception as e:
+        print(e)
+
 
 
 @app.route('/send_message')
@@ -87,5 +96,21 @@ def send_message():
     return redirect(f"https://t.me/{BOT_USERNAME}")
 
 
+# @app.errorhandler(500)
+# def internal_error(error):
+#
+#     return "500 error"
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return "404 error",404
+
+
+@app.errorhandler(400)
+def bad_request(error):
+    return "400 error",400
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

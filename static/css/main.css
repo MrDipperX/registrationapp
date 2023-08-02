@@ -158,6 +158,7 @@ h6 {
   font-size: 13px;
 }
 
+
 /* ==========================================================================
    #BACKGROUND
    ========================================================================== */
@@ -260,6 +261,14 @@ h6 {
   background: #4dae3c;
 }
 
+.btn--blue {
+  background: #2c6ed5;
+}
+
+.btn--blue:hover {
+  background: #2c6eed;
+}
+
 /* ==========================================================================
    #DATE PICKER
    ========================================================================== */
@@ -323,6 +332,43 @@ input {
   width: 100%;
   font-size: 14px;
   font-family: inherit;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Optional margin between rows */
+}
+
+/* Apply styles to the radio inputs */
+.radio-container input[type="radio"] {
+  /* Optional styles for radio buttons */
+  margin-right: 5px; /* Optional spacing between input and label */
+}
+
+/* Apply styles to the radio labels */
+.radio-container label {
+  /* Optional styles for radio labels */
+}
+
+/* Apply styles to the container for radio pairs */
+.radio-pair {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Optional margin between rows */
+}
+
+/* Apply styles to the radio labels */
+.radio-pair label {
+  /* Optional styles for radio labels */
+  flex: 1; /* Let the labels take up the available space in the row */
+  margin-right: 10px; /* Fixed spacing between label and radio input */
+  width: 10px;
+}
+
+/* Apply styles to the radio inputs */
+.radio-pair input[type="radio"] {
+  /* Optional styles for radio buttons */
 }
 
 .input-icon {
@@ -484,7 +530,7 @@ input {
 }
 
 .card-3 {
-  background: #000;
+  background: #242424;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;

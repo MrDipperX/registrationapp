@@ -1,0 +1,11 @@
+{% extends 'regFlask/base.html' %}
+
+{% block body %}
+
+    <div class="card-body">
+    <h1 class="title" style="color: #187500">Registration Successful!</h1>
+
+    <p><a href="/send_message?c={{ code }}" class="btn btn--pill btn--blue" style="text-decoration: none">Open Telegram <i class="fa fa-telegram"></i></a></p>
+
+    </div>
+{% endblock %}

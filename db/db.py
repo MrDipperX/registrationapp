@@ -63,7 +63,11 @@ class PgConn:
         with self.conn:
             self.cur.execute("SELECT id, name FROM fields ORDER BY id")
 
-            return self.cur.fetchall()
+            fields = self.cur.fetchall()
+
+            paired_fields = [[fields[i], fields[i + 1]] for i in range(0, len(fields), 2)]
+
+            return paired_fields
 
     def set_field(self, user_id, field):
         with self.conn:

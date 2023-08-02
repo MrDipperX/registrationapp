@@ -1,0 +1,97 @@
+{% extends 'regFlask/base.html' %}
+
+{% block body %}
+
+    <div class="card-heading"></div>
+    <div class="card-body">
+        <h2 class="title">Registration</h2>
+        <form method="POST" action="/register/">
+            <div class="row">
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="FirstName" name="firstname" required>
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="LastName" name="lastname" required>
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" required>
+                </div>
+                </div>
+
+            <div class="input-group">
+                <input class="input--style-3" type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" required>
+            </div>
+            <div class="input-group">
+                <input class="input--style-3" type="url" placeholder="Social Network" name="socLink">
+            </div>
+
+            <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                    <select id="role" name="role" onchange="showAdditionalFields()">
+                         <option disabled="disabled" selected="selected">Role</option>
+                        <option value="Investor">Investor</option>
+                        <option value="Startupper">Startupper</option>
+                    </select>
+                    <div class="select-dropdown"></div>
+                </div>
+            </div>
+
+
+        <div id="additionalFieldsInvestor" style="display: none;">
+            <div class="input-group">
+            <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>
+                {% for field in fields%}
+
+                     <div class="radio-pair">
+                        <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
+                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="field">
+
+                        <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
+                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="field">
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+        <div id="additionalFieldsStartup" style="display: none;">
+            <div class="input-group">
+            <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>
+                {% for field in fields%}
+
+                     <div class="radio-pair">
+                        <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
+                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="field">
+
+                        <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
+                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="field">
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+
+            <div id="additionalFields" style="display: none;">
+                 <div class="input-group">
+                    <input class="input--style-3" id="startupName" type="text" placeholder="Startupp Name" name="startupName">
+                </div>
+
+                 <div class="input-group">
+                    <input class="input--style-3" id="startupDescription" type="text" placeholder="Startupp Description" name="startupDescription">
+                </div>
+            </div>
+
+            <input type="hidden" name="userId" value="{{ user_id }}">
+
+            <div class="p-t-10">
+                <button class="btn btn--pill btn--green" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% endblock body %}
