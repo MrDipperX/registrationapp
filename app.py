@@ -11,6 +11,8 @@ from utils.loggging import logging
 app = Flask(__name__)
 
 
+
+
 # Home page with registration form
 @app.route('/register/', methods=['GET', 'POST'])
 def home():
