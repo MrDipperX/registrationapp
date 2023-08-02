@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, abort
 import requests
 import time
+import uvicorn
 from db.db import PgConn
 from config.config import REG_PAGE_TIME, BOT_TOKEN, BOT_USERNAME, APP_HOST, APP_PORT
 
@@ -120,4 +121,4 @@ def bad_request(error):
 
 
 if __name__ == "__main__":
-    app.run(host=APP_HOST, port=APP_PORT)
+    uvicorn.run(app, host="0.0.0.0", port=2610)
