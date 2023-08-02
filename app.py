@@ -6,6 +6,8 @@ from config.config import REG_PAGE_TIME, BOT_TOKEN
 
 from utils.constants import FINISH_MESSAGE_INVESTOR, FINISH_MESSAGE_STARTUPPER, BOT_USERNAME, INVESTOR
 
+from utils.loggging import logging
+
 app = Flask(__name__)
 
 
@@ -70,46 +72,49 @@ def home():
     except TypeError:
         abort(400)
     except Exception as e:
-        print(e)
+        logging.error(e)
 
 
 
 @app.route('/send_message')
 def send_message():
-    db_conn = PgConn()
-    api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    try:
+        db_conn = PgConn()
+        api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    code = request.args.get('c')
+        code = request.args.get('c')
 
-    role, user_id = db_conn.get_role_and_idtg(code)
+        role, user_id = db_conn.get_role_and_idtg(code)
 
-    if role == INVESTOR:
-        message = FINISH_MESSAGE_INVESTOR
-    else:
-        message = FINISH_MESSAGE_STARTUPPER
+        if role == INVESTOR:
+            message = FINISH_MESSAGE_INVESTOR
+        else:
+            message = FINISH_MESSAGE_STARTUPPER
 
-    requests.post(api_url, json={
-        'chat_id': user_id,
-        'text': message
-    })
+        requests.post(api_url, json={
+            'chat_id': user_id,
+            'text': message
+        })
 
-    return redirect(f"https://t.me/{BOT_USERNAME}")
+        return redirect(f"https://t.me/{BOT_USERNAME}")
+    except Exception as e:
+        logging.error(e)
 
 
-# @app.errorhandler(500)
-# def internal_error(error):
-#
-#     return "500 error"
+@app.errorhandler(500)
+def internal_error(error):
+
+    return "500 error"
 
 
 @app.errorhandler(404)
 def not_found(error):
-    return "404 error",404
+    return "404 error"
 
 
 @app.errorhandler(400)
 def bad_request(error):
-    return "400 error",400
+    return "400 error"
 
 
 if __name__ == "__main__":
