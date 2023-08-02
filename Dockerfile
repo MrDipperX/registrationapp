@@ -18,4 +18,4 @@ EXPOSE 2610
 ENV FLASK_APP=app.py
 
 # Run the Flask app
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=2610"]
