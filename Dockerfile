@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 # set work directory
-WORKDIR /reg_page
+WORKDIR /regFlask
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
