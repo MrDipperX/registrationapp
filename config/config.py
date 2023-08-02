@@ -14,3 +14,5 @@ PORT = env.str("PORT")
 PASSWORD = env.str("PASSWORD")
 
 REG_PAGE_TIME = env.int("REG_PAGE_TIME")
+
+BOT_USERNAME = env.str("BOT_USERNAME")
