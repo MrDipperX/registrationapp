@@ -5,7 +5,7 @@
     <div class="card-heading"></div>
     <div class="card-body">
         <h2 class="title">Registration</h2>
-        <form method="POST">
+        <form method="POST" action="">
             <div class="row">
                 <div class="input-group">
                     <input class="input--style-3" type="text" placeholder="FirstName" name="firstname" value="{{ user[0] }}" required>
@@ -46,10 +46,10 @@
 
                      <div class="radio-pair">
                         <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="field" >
+                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="fieldI" >
 
                         <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="field" >
+                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="fieldI" >
                     </div>
 
                 {% endfor %}
@@ -65,16 +65,15 @@
 
                      <div class="radio-pair">
                         <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="field" required>
+                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="fieldS">
 
                         <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="field" required>
+                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="fieldS">
                     </div>
 
                 {% endfor %}
             </div>
         </div>
-
 
             <div id="additionalFields" style="display: none;">
                  <div class="input-group">

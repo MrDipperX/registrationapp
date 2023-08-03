@@ -13,14 +13,12 @@ function showAdditionalFields() {
         additionalFields.style.display = 'block';
         startupNameInput.required = true;
         startupDescriptionInput.required = true;
-    } else if (roleSelect.value === 'Investor') {
+    } else{
         additionalFieldsInvestor.style.display = 'block';
         additionalFieldsStartup.style.display = 'none';
         additionalFields.style.display = 'none';
         startupNameInput.required = false;
         startupDescriptionInput.required = false;
-    } else {
-
     }
 }
 
