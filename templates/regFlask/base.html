@@ -47,6 +47,17 @@
     <!-- Main JS-->
     <script src="../../static/js/global.js"></script>
     <script src="../../static/js/script.js"></script>
+    <script>
+        document.getElementById("role").addEventListener("submit", function(event) {
+        const selectedOption = document.getElementById("role").value;
+
+        if (selectedOption === "Role") {
+        event.preventDefault();
+        alert("Please select either 'Investor' or 'Startupper'");
+        // You can also add CSS classes to highlight the select element in red or show an error message next to it.
+        }
+        });
+    </script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 

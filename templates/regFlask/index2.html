@@ -5,34 +5,33 @@
     <div class="card-heading"></div>
     <div class="card-body">
         <h2 class="title">Registration</h2>
-        <form method="POST" action="/register/">
+        <form method="POST">
             <div class="row">
                 <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="FirstName" name="firstname" required>
+                    <input class="input--style-3" type="text" placeholder="FirstName" name="firstname" value="{{ user[0] }}" required>
                 </div>
                 <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="LastName" name="lastname" required>
+                    <input class="input--style-3" type="text" placeholder="LastName" name="lastname" value="{{ user[1] }}" required>
                 </div>
                 <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" required>
+                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" value="{{ user[2] }}" required>
                 </div>
                 </div>
 
             <div class="input-group">
-                <input class="input--style-3" type="email" placeholder="Email" name="email" required>
+                <input class="input--style-3" type="email" placeholder="Email" name="email" value="{{ user[4] }}" required>
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" required>
+                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" value="{{ user[3] }}" required>
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="url" placeholder="Social Network" name="socLink">
+                <input class="input--style-3" type="url" placeholder="Social Network" value="{{ user[5] }}" name="socLink">
             </div>
 
             <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                     <select id="role" name="role" onchange="showAdditionalFields()">
-                         <option disabled="disabled" selected="selected">Role</option>
-                        <option value="Investor">Investor</option>
+                        <option value="Investor" selected="selected">Investor</option>
                         <option value="Startupper">Startupper</option>
                     </select>
                     <div class="select-dropdown"></div>
@@ -40,17 +39,17 @@
             </div>
 
 
-        <div id="additionalFieldsInvestor" style="display: none;">
+        <div id="additionalFieldsInvestor" style="display: block;">
             <div class="input-group">
             <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>
                 {% for field in fields%}
 
                      <div class="radio-pair">
                         <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="field">
+                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="field" >
 
                         <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="field">
+                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="field" >
                     </div>
 
                 {% endfor %}
@@ -66,10 +65,10 @@
 
                      <div class="radio-pair">
                         <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="field">
+                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="field" required>
 
                         <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="field">
+                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="field" required>
                     </div>
 
                 {% endfor %}

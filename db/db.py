@@ -1,12 +1,6 @@
 import psycopg2
-from psycopg2 import sql
-from datetime import datetime
 from config.config import HOST, PORT, DBNAME, PASSWORD, USER
-import json
-import pytz
-import datetime
-from datetime import timedelta
-import random
+
 # from utils.misc.logging import logging
 
 
@@ -48,6 +42,12 @@ class PgConn:
     def get_user_sec_info(self, user_id):
         with self.conn:
             self.cur.execute("SELECT sec_code, sec_code_time FROM users WHERE tg_id = %s;", (user_id,))
+            return self.cur.fetchone()
+
+    def get_user_full_info(self, user_id):
+        with self.conn:
+            self.cur.execute("SELECT firstname, lastname, midname, phone, email, soc_link "
+                             "FROM users WHERE tg_id = %s;", (user_id,))
             return self.cur.fetchone()
 
     def add_startup(self, user_id, name, description):
