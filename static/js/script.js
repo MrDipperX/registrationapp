@@ -1,4 +1,4 @@
-// scriptapp.js
+// script.js
 function showAdditionalFields() {
     const roleSelect = document.getElementById('role');
     const additionalFields = document.getElementById('additionalFields');
