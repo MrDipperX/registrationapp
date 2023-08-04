@@ -542,7 +542,7 @@ input {
 }
 
 .card-3 .card-heading {
-  background: url("../images/bg-heading-03.jpg") top left/cover no-repeat;
+  background: url("https://gitlab.com/MrDipperX/registration-users/-/blob/master/static/images/bg-heading-03.jpg") top left/cover no-repeat;
   display: table-cell;
   width: 50%;
 }
