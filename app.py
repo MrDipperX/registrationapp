@@ -4,7 +4,7 @@ import time
 from db.db import PgConn
 from config.config import REG_PAGE_TIME, BOT_TOKEN, BOT_USERNAME, APP_HOST, APP_PORT
 
-from utils.constants import FINISH_MESSAGE_INVESTOR, FINISH_MESSAGE_STARTUPPER, INVESTOR, STARTUPPER
+from utils.constants import FINISH_MESSAGE_INVESTOR, FINISH_MESSAGE_STARTUPPER, INVESTOR, STARTUPPER, HR, EMPLOYEE
 
 from utils.loggging import logging
 
@@ -29,37 +29,36 @@ def home():
                 code_time = now + REG_PAGE_TIME * 60
                 db_conn.update_user_sec_info(user_id, code_time)
 
-                fields = db_conn.get_fields()
+                # fields = db_conn.get_fields()
 
                 user = db_conn.get_user_full_info(user_id)
 
                 # return render_template('index.html', user_id=user_id)
 
-                return render_template('regFlask/index2.html', user_id=user_id, fields=fields, user=user)
+                return render_template('regFlask/index2.html', user_id=user_id, user=user)
 
             return render_template('regFlask/return.html', bot=BOT_USERNAME)
 
         elif request.method == 'POST':
             firstname = request.form['firstname']
             lastname = request.form['lastname']
-            midname = request.form['midname']
+            # midname = request.form['midname']
             role = request.form['role']
             email = request.form['email']
-            phone = request.form['phone']
+            # phone = request.form['phone']
             soc_link = request.form['socLink']
             user_id = request.form['userId']
-            if role == INVESTOR:
-                field = request.form.getlist('fieldI')
-            else:
-                field = request.form.getlist('fieldS')
-            field = [int(f) for f in field]
+            fields = request.form['fields']
+            fields = fields.split(",")
 
-
+            if role == STARTUPPER:
+                fields = [fields[0]]
+            fields = [[field] for field in fields]
             code, code_time = db_conn.get_user_sec_info(user_id)
             now = time.time()
             if code_time >= now:
-
-                db_conn.update_user(user_id, firstname, lastname, midname, role, email, phone, soc_link)
+                db_conn.update_user(user_id, firstname, lastname, role, email, soc_link)
+                field = db_conn.add_fields(fields)
 
                 if role == STARTUPPER:
                     startupp_name = request.form['startupName']

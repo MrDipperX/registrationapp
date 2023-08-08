@@ -785,7 +785,7 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <StartupTime>1690776318</StartupTime>
+      <StartupTime>1691244106</StartupTime>
     </root>
     <database id="2" parent="1" name="CakeBot">
       <ObjectId>16394</ObjectId>
@@ -802,10 +802,10 @@ false Zulu
     <database id="5" parent="1" name="Investor_Startupper">
       <ObjectId>46073</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>8040</IntrospectionStateNumber>
+      <IntrospectionStateNumber>8504</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|46366|46367|1
-sequence|table|46375|46376|1
+      <Relations>sequence|table|46466|46467|1
+sequence|table|46475|46476|1
 </Relations>
     </database>
     <database id="6" parent="1" name="LMS">
@@ -938,7 +938,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>8041</IntrospectionStateNumber>
+      <IntrospectionStateNumber>8505</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="36" parent="5" name="plpgsql">
@@ -1039,54 +1039,55 @@ UC/10
       <Type>index</Type>
     </access-method>
     <sequence id="48" parent="35" name="fields_id_seq">
-      <ObjectId>46366</ObjectId>
+      <ObjectId>46466</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <sequence id="49" parent="35" name="users_id_seq">
-      <ObjectId>46375</ObjectId>
+      <ObjectId>46475</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <table id="50" parent="35" name="fields">
-      <ObjectId>46367</ObjectId>
+      <ObjectId>46467</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
     </table>
     <table id="51" parent="35" name="startups">
-      <ObjectId>46388</ObjectId>
+      <ObjectId>46494</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
     </table>
     <table id="52" parent="35" name="users">
-      <ObjectId>46376</ObjectId>
+      <ObjectId>46476</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
     </table>
     <table id="53" parent="35" name="viewed_users">
-      <ObjectId>46400</ObjectId>
+      <ObjectId>46506</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
     </table>
     <column id="54" parent="50" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DefaultExpression>nextval(&apos;fields_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
     <column id="55" parent="50" name="name">
       <Position>2</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <DataType>varchar(150)|0s</DataType>
+      <StateNumber>8485</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="56" parent="50" name="fields_pkey">
-      <ObjectId>46371</ObjectId>
-      <StateNumber>8035</StateNumber>
+      <ObjectId>46471</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1095,8 +1096,8 @@ UC/10
       <ClassIds>1978</ClassIds>
     </index>
     <index id="57" parent="50" name="fields_name_key">
-      <ObjectId>46373</ObjectId>
-      <StateNumber>8035</StateNumber>
+      <ObjectId>46473</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
@@ -1105,39 +1106,39 @@ UC/10
       <ClassIds>3126</ClassIds>
     </index>
     <key id="58" parent="50" name="fields_pkey">
-      <ObjectId>46372</ObjectId>
-      <StateNumber>8035</StateNumber>
+      <ObjectId>46472</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>fields_pkey</UnderlyingIndexName>
     </key>
     <key id="59" parent="50" name="fields_name_key">
-      <ObjectId>46374</ObjectId>
-      <StateNumber>8035</StateNumber>
+      <ObjectId>46474</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>name</ColNames>
       <UnderlyingIndexName>fields_name_key</UnderlyingIndexName>
     </key>
     <column id="60" parent="51" name="user_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="61" parent="51" name="name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="62" parent="51" name="description">
       <Position>3</Position>
       <DataType>text|0s</DataType>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
       <TypeId>25</TypeId>
     </column>
     <index id="63" parent="51" name="startups_user_id_key">
-      <ObjectId>46393</ObjectId>
-      <StateNumber>8036</StateNumber>
+      <ObjectId>46499</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
@@ -1145,16 +1146,16 @@ UC/10
       <ClassIds>1978</ClassIds>
     </index>
     <key id="64" parent="51" name="startups_user_id_key">
-      <ObjectId>46394</ObjectId>
-      <StateNumber>8036</StateNumber>
+      <ObjectId>46500</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>startups_user_id_key</UnderlyingIndexName>
     </key>
     <foreign-key id="65" parent="51" name="startups_user_id_fkey">
-      <ObjectId>46395</ObjectId>
-      <StateNumber>8036</StateNumber>
+      <ObjectId>46501</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>46376</RefTableId>
+      <RefTableId>46476</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -1165,99 +1166,99 @@ UC/10
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
     <column id="67" parent="52" name="tg_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="68" parent="52" name="username">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="69" parent="52" name="date_reg">
       <Position>4</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DefaultExpression>(now() + &apos;05:00:00&apos;::interval)</DefaultExpression>
       <TypeId>1184</TypeId>
     </column>
     <column id="70" parent="52" name="firstname">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
     <column id="71" parent="52" name="lastname">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="72" parent="52" name="midname">
+    <column id="72" parent="52" name="state">
       <Position>7</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>8485</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="73" parent="52" name="state">
+    <column id="73" parent="52" name="role">
       <Position>8</Position>
       <DataType>varchar(50)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="74" parent="52" name="role">
+    <column id="74" parent="52" name="field">
       <Position>9</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <StateNumber>8035</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="75" parent="52" name="field">
-      <Position>10</Position>
       <DataType>integer[]|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <DefaultExpression>&apos;{}&apos;::integer[]</DefaultExpression>
       <TypeId>1007</TypeId>
     </column>
-    <column id="76" parent="52" name="phone">
+    <column id="75" parent="52" name="phone">
+      <Position>10</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="76" parent="52" name="email">
       <Position>11</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="77" parent="52" name="email">
+    <column id="77" parent="52" name="soc_link">
       <Position>12</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <StateNumber>8035</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="78" parent="52" name="soc_link">
-      <Position>13</Position>
       <DataType>text|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
+      <DefaultExpression>&apos;&apos;::text</DefaultExpression>
       <TypeId>25</TypeId>
     </column>
-    <column id="79" parent="52" name="sec_code">
-      <Position>14</Position>
+    <column id="78" parent="52" name="sec_code">
+      <Position>13</Position>
       <DataType>varchar(7)|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="80" parent="52" name="sec_code_time">
-      <Position>15</Position>
+    <column id="79" parent="52" name="sec_code_time">
+      <Position>14</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>8035</StateNumber>
+      <StateNumber>8485</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="81" parent="52" name="users_pkey">
-      <ObjectId>46384</ObjectId>
-      <StateNumber>8035</StateNumber>
+    <index id="80" parent="52" name="users_pkey">
+      <ObjectId>46490</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1265,60 +1266,60 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="82" parent="52" name="users_tg_id_key">
-      <ObjectId>46386</ObjectId>
-      <StateNumber>8035</StateNumber>
+    <index id="81" parent="52" name="users_tg_id_key">
+      <ObjectId>46492</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>tg_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>0</CollationIds>
       <ClassIds>3124</ClassIds>
     </index>
-    <key id="83" parent="52" name="users_pkey">
-      <ObjectId>46385</ObjectId>
-      <StateNumber>8035</StateNumber>
+    <key id="82" parent="52" name="users_pkey">
+      <ObjectId>46491</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
     </key>
-    <key id="84" parent="52" name="users_tg_id_key">
-      <ObjectId>46387</ObjectId>
-      <StateNumber>8035</StateNumber>
+    <key id="83" parent="52" name="users_tg_id_key">
+      <ObjectId>46493</ObjectId>
+      <StateNumber>8485</StateNumber>
       <ColNames>tg_id</ColNames>
       <UnderlyingIndexName>users_tg_id_key</UnderlyingIndexName>
     </key>
-    <column id="85" parent="53" name="user_id">
+    <column id="84" parent="53" name="user_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="86" parent="53" name="viewed">
+    <column id="85" parent="53" name="viewed">
       <Position>2</Position>
       <DataType>integer[]|0s</DataType>
-      <StateNumber>8036</StateNumber>
+      <StateNumber>8486</StateNumber>
       <TypeId>1007</TypeId>
     </column>
-    <index id="87" parent="53" name="viewed_users_user_id_key">
-      <ObjectId>46405</ObjectId>
-      <StateNumber>8036</StateNumber>
+    <index id="86" parent="53" name="viewed_users_user_id_key">
+      <ObjectId>46511</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="88" parent="53" name="viewed_users_user_id_key">
-      <ObjectId>46406</ObjectId>
-      <StateNumber>8036</StateNumber>
+    <key id="87" parent="53" name="viewed_users_user_id_key">
+      <ObjectId>46512</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>viewed_users_user_id_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="89" parent="53" name="viewed_users_user_id_fkey">
-      <ObjectId>46407</ObjectId>
-      <StateNumber>8036</StateNumber>
+    <foreign-key id="88" parent="53" name="viewed_users_user_id_fkey">
+      <ObjectId>46513</ObjectId>
+      <StateNumber>8486</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>46376</RefTableId>
+      <RefTableId>46476</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>

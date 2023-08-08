@@ -570,3 +570,22 @@ input {
     padding-bottom: 45px;
   }
 }
+
+.input-container {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.tooltiptext {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+}

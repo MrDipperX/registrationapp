@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import sql
 from config.config import HOST, PORT, DBNAME, PASSWORD, USER
 
 # from utils.misc.logging import logging
@@ -16,11 +17,11 @@ class PgConn:
             # logging.error(error)
 
 # User section
-    def update_user(self, user_id, firstname, lastname, midname, role, email, phone, soc_link):
+    def update_user(self, user_id, firstname, lastname, role, email, soc_link):
         with self.conn:
-            self.cur.execute("UPDATE users SET firstname = %s, lastname = %s, midname = %s, "
-                             "role = %s, email = %s, phone = %s, soc_link = %s WHERE tg_id = %s;",
-                             (firstname, lastname, midname, role, email, phone, soc_link, user_id))
+            self.cur.execute("UPDATE users SET firstname = %s, lastname = %s, "
+                             "role = %s, email = %s, soc_link = %s WHERE tg_id = %s;",
+                             (firstname, lastname, role, email, soc_link, user_id))
             self.conn.commit()
 
     def get_sec_code_time(self, code):
@@ -46,7 +47,7 @@ class PgConn:
 
     def get_user_full_info(self, user_id):
         with self.conn:
-            self.cur.execute("SELECT firstname, lastname, midname, phone, email, soc_link "
+            self.cur.execute("SELECT firstname, lastname, email, soc_link "
                              "FROM users WHERE tg_id = %s;", (user_id,))
             return self.cur.fetchone()
 
@@ -75,3 +76,14 @@ class PgConn:
                 field = [field]
             self.cur.execute("UPDATE users SET field = %s WHERE tg_id = %s;", (field, user_id))
             self.conn.commit()
+
+    def add_fields(self, values):
+        with self.conn:
+            insert_values = [[val[0].strip().lower()] for val in values]
+
+            self.cur.executemany("""INSERT INTO fields(name) VALUES(%s) ON CONFLICT(name) DO NOTHING""",
+                                 insert_values)
+            self.conn.commit()
+
+            self.cur.execute(""" SELECT id FROM fields WHERE name IN %s """, (tuple([val[0] for val in insert_values]), ))
+            return [val[0] for val in self.cur.fetchall()]

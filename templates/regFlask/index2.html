@@ -13,19 +13,19 @@
                 <div class="input-group">
                     <input class="input--style-3" type="text" placeholder="LastName" name="lastname" value="{{ user[1] }}" required>
                 </div>
-                <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" value="{{ user[2] }}" required>
-                </div>
+{#                <div class="input-group">#}
+{#                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" value="{{ user[2] }}" required>#}
+{#                </div>#}
                 </div>
 
             <div class="input-group">
-                <input class="input--style-3" type="email" placeholder="Email" name="email" value="{{ user[4] }}" required>
+                <input class="input--style-3" type="email" placeholder="Email" name="email" value="{{ user[2] }}" required>
             </div>
+{#            <div class="input-group">#}
+{#                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" value="{{ user[3] }}" required>#}
+{#            </div>#}
             <div class="input-group">
-                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" value="{{ user[3] }}" required>
-            </div>
-            <div class="input-group">
-                <input class="input--style-3" type="url" placeholder="Social Network" value="{{ user[5] }}" name="socLink">
+                <input class="input--style-3" type="url" placeholder="Social Network" value="{{ user[3] }}" name="socLink">
             </div>
 
             <div class="input-group">
@@ -34,47 +34,43 @@
                     <select id="role" name="role" onchange="showAdditionalFields()">
                         <option value="Investor" selected="selected">Investor</option>
                         <option value="Startupper">Startupper</option>
+                        <option value="HR">HR</option>
+                        <option value="Employee">Employee</option>
                     </select>
                     <div class="select-dropdown"></div>
                 </div>
             </div>
 
 
-        <div id="additionalFieldsInvestor" style="display: block;">
-            <div class="input-group">
-            <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>
-                {% for field in fields%}
-
-                     <div class="radio-pair">
-                        <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="checkbox" value="{{ field[0][0] }}" name="fieldI" >
-
-                        <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="checkbox" value="{{ field[1][0] }}" name="fieldI" >
-                    </div>
-
-                {% endfor %}
+{#        <div id="additionalFieldsInvestor" style="display: block;">#}
+            <div class="input-container">
+                <div class="input-group">
+                    <input class="input--style-3" type="text" id="fields" placeholder="Fields" name="fields" required>
+                    <span id="othersHint" class="tooltiptext" >Please write all fields you are interested<p> in separating them with a comma</p></span>
+                    <span id="startuppHint" class="tooltiptext" >You have chosen "Statupper" role, you should<p>write only  one field, if you write more, the </p><p> system will take first</p></span>
+                </div>
             </div>
-        </div>
+            <br><br>
+{#        </div>#}
 
 
 
-        <div id="additionalFieldsStartup" style="display: none;">
-            <div class="input-group">
-            <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>
-                {% for field in fields%}
-
-                     <div class="radio-pair">
-                        <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>
-                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="fieldS">
-
-                        <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>
-                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="fieldS">
-                    </div>
-
-                {% endfor %}
-            </div>
-        </div>
+{#        <div id="additionalFieldsStartup" style="display: none;">#}
+{#            <div class="input-group">#}
+{#            <h5 class="title" style="font-size: 16px; color: #cccccc">Fields</h5>#}
+{#                {% for field in fields%}#}
+{##}
+{#                     <div class="radio-pair">#}
+{#                        <label for="{{ field[0][1] }}" style="color: #cccccc">{{ field[0][1] }}</label>#}
+{#                        <input id="{{ field[0][1] }}" type="radio" value="{{ field[0][0] }}" name="fieldS">#}
+{##}
+{#                        <label for="{{ field[1][1] }}" style="color: #cccccc">{{ field[1][1] }}</label>#}
+{#                        <input id="{{ field[1][1] }}" type="radio" value="{{ field[1][0] }}" name="fieldS">#}
+{#                    </div>#}
+{##}
+{#                {% endfor %}#}
+{#            </div>#}
+{#        </div>#}
 
             <div id="additionalFields" style="display: none;">
                  <div class="input-group">
