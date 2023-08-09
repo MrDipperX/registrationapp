@@ -6,10 +6,10 @@ function showAdditionalFields() {
     // const additionalFieldsStartup = document.getElementById('additionalFieldsStartup');
     const startupNameInput = document.getElementById('startupName');
     const startupDescriptionInput = document.getElementById('startupDescription');
-    const startupHint = document.getElementById('startuppHint')
-    const othersHint = document.getElementById('othersHint')
-
-    const input = document.getElementById('fields');
+    // const startupHint = document.getElementById('startuppHint')
+    // const othersHint = document.getElementById('othersHint')
+    //
+    // const input = document.getElementById('fields');
 
     if (roleSelect.value === 'Startupper') {
         // additionalFieldsInvestor.style.display = 'none';
@@ -22,16 +22,16 @@ function showAdditionalFields() {
         startupNameInput.required = true;
         startupDescriptionInput.required = true;
 
-
-        input.addEventListener('mouseover', () => {
-          startupHint.style.display = 'inline-block';
-          othersHint.style.display = 'none';
-        });
-
-        input.addEventListener('mouseout', () => {
-          startupHint.style.display = 'none';
-          othersHint.style.display = 'none';
-        });
+        //
+        // input.addEventListener('mouseover', () => {
+        //   startupHint.style.display = 'inline-block';
+        //   othersHint.style.display = 'none';
+        // });
+        //
+        // input.addEventListener('mouseout', () => {
+        //   startupHint.style.display = 'none';
+        //   othersHint.style.display = 'none';
+        // });
     } else{
         // additionalFieldsInvestor.style.display = 'block';
         // additionalFieldsStartup.style.display = 'none';
@@ -44,15 +44,15 @@ function showAdditionalFields() {
         startupDescriptionInput.required = false;
 
 
-        input.addEventListener('mouseover', () => {
-            startupHint.style.display = 'none';
-            othersHint.style.display = 'inline-block';
-        });
-
-        input.addEventListener('mouseout', () => {
-            startupHint.style.display = 'none';
-            othersHint.style.display = 'none';
-        });
+        // input.addEventListener('mouseover', () => {
+        //     startupHint.style.display = 'none';
+        //     othersHint.style.display = 'inline-block';
+        // });
+        //
+        // input.addEventListener('mouseout', () => {
+        //     startupHint.style.display = 'none';
+        //     othersHint.style.display = 'none';
+        // });
     }
 }
 

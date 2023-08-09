@@ -51,8 +51,8 @@ def home():
             fields = request.form['fields']
             fields = fields.split(",")
 
-            if role == STARTUPPER:
-                fields = [fields[0]]
+            # if role == STARTUPPER:
+            #     fields = [fields[0]]
             fields = [[field] for field in fields]
             code, code_time = db_conn.get_user_sec_info(user_id)
             now = time.time()
