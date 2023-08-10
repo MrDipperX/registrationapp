@@ -1058,6 +1058,7 @@ UC/10
     </table>
     <table id="51" parent="35" name="startups">
       <ObjectId>46494</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>8486</StateNumber>
     </table>
@@ -1068,6 +1069,7 @@ UC/10
     </table>
     <table id="53" parent="35" name="viewed_users">
       <ObjectId>46506</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>8486</StateNumber>
     </table>
