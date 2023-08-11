@@ -32,20 +32,21 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                     <h5 class="title" style="font-size: 16px; color: #cccccc">Role</h5>
                     <select id="role" name="role" onchange="showAdditionalFields()">
-                        <option value="Investor" selected="selected">Investor</option>
-                        <option value="Startupper">Startupper</option>
-                        <option value="HR">HR</option>
-                        <option value="Employee">Employee</option>
+                        <option value="Investor" {% if user[4] == "Investor" or user[4] == ""%} selected="selected" {% endif %}>Investor</option>
+                        <option value="Startupper" {% if user[4] == "Startupper"%} selected="selected" {% endif %}>Startupper</option>
+                        <option value="HR" {% if user[4] == "HR"%} selected="selected" {% endif %}>HR</option>
+                        <option value="Employee" {% if user[4] == "Employee"%} selected="selected" {% endif %}>Employee</option>
                     </select>
                     <div class="select-dropdown"></div>
                 </div>
             </div>
 
 
+
 {#        <div id="additionalFieldsInvestor" style="display: block;">#}
             <div class="input-container">
                 <div class="input-group">
-                    <input class="input--style-3" type="text" id="fields" placeholder="Fields" name="fields" required>
+                    <input class="input--style-3" type="text" id="fields" placeholder="Fields" name="fields" value="{{ user[5]}}" required>
                     <span id="othersHint" class="tooltiptext" >Please write all fields you are interested<p> in separating them with a comma</p></span>
 {#                    <span id="startuppHint" class="tooltiptext" >You have chosen "Statupper" role, you should<p>write only  one field, if you write more, the </p><p> system will take first</p></span>#}
                 </div>
@@ -72,13 +73,13 @@
 {#            </div>#}
 {#        </div>#}
 
-            <div id="additionalFields" style="display: none;">
+            <div id="additionalFields" {% if user[4] == "Startupper" %}style="display: block;" {% else %} style="display: none;" {% endif %}>
                  <div class="input-group">
-                    <input class="input--style-3" id="startupName" type="text" placeholder="Startupp Name" name="startupName">
+                    <input class="input--style-3" id="startupName" type="text" placeholder="Startupp Name" name="startupName" value="{{ user[6] }}">
                 </div>
 
                  <div class="input-group">
-                    <input class="input--style-3" id="startupDescription" type="text" placeholder="Startupp Description" name="startupDescription">
+                    <input class="input--style-3" id="startupDescription" type="text" placeholder="Startupp Description" name="startupDescription" value="{{ user[7] }}">
                 </div>
             </div>
 

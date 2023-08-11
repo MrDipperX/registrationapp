@@ -24,6 +24,11 @@ class PgConn:
                              (firstname, lastname, role, email, soc_link, user_id))
             self.conn.commit()
 
+    def update_state(self, user_id, text):
+        with self.conn:
+            self.cur.execute("UPDATE users SET state = %s WHERE tg_id = %s;", (text, user_id))
+            self.conn.commit()
+
     def get_sec_code_time(self, code):
         with self.conn:
             self.cur.execute("SELECT sec_code_time, tg_id FROM users WHERE sec_code = %s;", (code, ))
@@ -47,9 +52,28 @@ class PgConn:
 
     def get_user_full_info(self, user_id):
         with self.conn:
-            self.cur.execute("SELECT firstname, lastname, email, soc_link "
+            self.cur.execute("SELECT string_agg(f.name, ', ') FROM fields f "
+                             "JOIN unnest((SELECT field FROM users WHERE tg_id = %s)) AS field_id "
+                             "ON f.id = field_id;", (user_id,))
+            # field_names = [row[0] for row in self.cur.fetchall()]
+            fields = self.cur.fetchone()[0]
+            fields = fields if fields is not None else ""
+
+            self.cur.execute("SELECT firstname, lastname, email, soc_link, role "
                              "FROM users WHERE tg_id = %s;", (user_id,))
-            return self.cur.fetchone()
+
+            user_info = list(self.cur.fetchone())
+            user_info.append(fields)
+
+            self.cur.execute("SELECT name, description "
+                             "FROM startups WHERE user_id = (SELECT id FROM users WHERE tg_id = %s);", (user_id,))
+            val = self.cur.fetchone()
+
+            startup = val if val is not None else ['', '']
+
+            user_info.extend(startup)
+
+            return user_info
 
     def add_startup(self, user_id, name, description):
         with self.conn:

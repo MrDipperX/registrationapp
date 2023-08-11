@@ -67,6 +67,7 @@ def home():
                     db_conn.add_startup(user_id, startupp_name, startupp_desc)
 
                 db_conn.set_field(user_id, field)
+                db_conn.update_state(user_id, "finish")
 
                 return render_template('regFlask/success.html', code=code)
 
@@ -103,6 +104,7 @@ def send_message():
 
         print(e)
 
+
 @app.errorhandler(500)
 def internal_error(error):
 
@@ -121,4 +123,3 @@ def bad_request(error):
 
 if __name__ == "__main__":
     app.run(host=APP_HOST, port=APP_PORT)
-    # uvicorn.run(app, host="0.0.0.0", port=2610)
