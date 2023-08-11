@@ -25,7 +25,8 @@
 {#                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" value="{{ user[3] }}" required>#}
 {#            </div>#}
             <div class="input-group">
-                <input class="input--style-3" type="text" pattern="(https?)?.*linkedin\.com.*" placeholder="LinkedIn profile" value="{{ user[3] }}" name="socLink" oninvalid="this.setCustomValidity('Your LinkedIn profile link')" required>
+                <input class="input--style-3" type="text" placeholder="LinkedIn profile" value="{{ user[3] }}" name="socLink">
+{#                <input class="input--style-3" type="text" pattern="(https?)?.*linkedin\.com.*" placeholder="LinkedIn profile" value="{{ user[3] }}" name="socLink" oninvalid="this.setCustomValidity('Your LinkedIn profile link')" required>#}
             </div>
 
             <div class="input-group">
