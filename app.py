@@ -4,9 +4,9 @@ import time
 from db.db import PgConn
 from config.config import REG_PAGE_TIME, BOT_TOKEN, BOT_USERNAME, APP_HOST, APP_PORT
 
-from utils.constants import FINISH_MESSAGE_INVESTOR, FINISH_MESSAGE_STARTUPPER, INVESTOR, STARTUPPER, HR, EMPLOYEE
+from utils.constants import FINISH_MESSAGE_EN, FINISH_MESSAGE_RU, INVESTOR, STARTUPPER, HR, EMPLOYEE
 
-from utils.loggging import logging
+from utils.logging import logging
 
 app = Flask(__name__)
 
@@ -23,6 +23,7 @@ def home():
 
             code_time, user_id = db_conn.get_sec_code_time(code)
             now = time.time()
+            user_lang = db_conn.get_user_lang(user_id)
 
             if code_time >= now:
                 now = time.time()
@@ -35,9 +36,9 @@ def home():
 
                 # return render_template('index.html', user_id=user_id)
 
-                return render_template('regFlask/index2.html', user_id=user_id, user=user)
+                return render_template('regFlask/index2.html', user_id=user_id, user=user, lang=user_lang)
 
-            return render_template('regFlask/return.html', bot=BOT_USERNAME)
+            return render_template('regFlask/return.html', bot=BOT_USERNAME, lang=user_lang)
 
         elif request.method == 'POST':
             firstname = request.form['firstname']
@@ -54,6 +55,9 @@ def home():
             # if role == STARTUPPER:
             #     fields = [fields[0]]
             fields = [[field] for field in fields]
+
+            user_lang = db_conn.get_user_lang(user_id)
+
             code, code_time = db_conn.get_user_sec_info(user_id)
             now = time.time()
             if code_time >= now:
@@ -69,9 +73,9 @@ def home():
                 db_conn.set_field(user_id, field)
                 db_conn.update_state(user_id, "finish")
 
-                return render_template('regFlask/success.html', code=code)
+                return render_template('regFlask/success.html', code=code, lang=user_lang)
 
-            return render_template('regFlask/return.html', bot=BOT_USERNAME)
+            return render_template('regFlask/return.html', bot=BOT_USERNAME, lang=user_lang)
     except TypeError:
         abort(400)
     except Exception as e:
@@ -87,11 +91,12 @@ def send_message():
         code = request.args.get('c')
 
         role, user_id = db_conn.get_role_and_idtg(code)
+        user_lang = db_conn.get_user_lang(user_id)
 
-        if role == INVESTOR:
-            message = FINISH_MESSAGE_INVESTOR
+        if user_lang == 'ru':
+            message = FINISH_MESSAGE_RU
         else:
-            message = FINISH_MESSAGE_STARTUPPER
+            message = FINISH_MESSAGE_EN
 
         requests.post(api_url, json={
             'chat_id': user_id,
@@ -100,9 +105,9 @@ def send_message():
 
         return redirect(f"https://t.me/{BOT_USERNAME}")
     except Exception as e:
-        # logging.error(e)
+        logging.error(e)
 
-        print(e)
+        # print(e)
 
 
 @app.errorhandler(500)

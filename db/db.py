@@ -1,8 +1,7 @@
 import psycopg2
-from psycopg2 import sql
 from config.config import HOST, PORT, DBNAME, PASSWORD, USER
 
-# from utils.misc.logging import logging
+from utils.logging import logging
 
 
 class PgConn:
@@ -13,8 +12,8 @@ class PgConn:
             self.cur = self.conn.cursor()
 
         except(Exception, psycopg2.DatabaseError, psycopg2.OperationalError) as error:
-            print(error)
-            # logging.error(error)
+            # print(error)
+            logging.error(error)
 
 # User section
     def update_user(self, user_id, firstname, lastname, role, email, soc_link):
@@ -49,6 +48,11 @@ class PgConn:
         with self.conn:
             self.cur.execute("SELECT sec_code, sec_code_time FROM users WHERE tg_id = %s;", (user_id,))
             return self.cur.fetchone()
+
+    def get_user_lang(self, user_id):
+        with self.conn:
+            self.cur.execute("SELECT lang FROM users WHERE tg_id = %s;", (user_id,))
+            return self.cur.fetchone()[0]
 
     def get_user_full_info(self, user_id):
         with self.conn:
@@ -109,5 +113,6 @@ class PgConn:
                                  insert_values)
             self.conn.commit()
 
-            self.cur.execute(""" SELECT id FROM fields WHERE name IN %s """, (tuple([val[0] for val in insert_values]), ))
+            self.cur.execute(""" SELECT id FROM fields WHERE name IN %s """,
+                             (tuple([val[0] for val in insert_values]), ))
             return [val[0] for val in self.cur.fetchall()]

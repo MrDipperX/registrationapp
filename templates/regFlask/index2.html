@@ -4,14 +4,14 @@
 
     <div class="card-heading"></div>
     <div class="card-body">
-        <h2 class="title">Registration</h2>
+        <h2 class="title">{% if lang == 'ru' %} Регистрация {% else %} Registration {% endif %}</h2>
         <form method="POST" action="">
             <div class="row">
                 <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="FirstName" name="firstname" value="{{ user[0] }}" required>
+                    <input class="input--style-3" type="text" {% if lang == 'ru' %} placeholder="Имя" {% else %} placeholder="FirstName" {% endif %} name="firstname" value="{{ user[0] }}" required>
                 </div>
                 <div class="input-group">
-                    <input class="input--style-3" type="text" placeholder="LastName" name="lastname" value="{{ user[1] }}" required>
+                    <input class="input--style-3" type="text" {% if lang == 'ru' %} placeholder="Фамилия" {% else %} placeholder="LastName" {% endif %} name="lastname" value="{{ user[1] }}" required>
                 </div>
 {#                <div class="input-group">#}
 {#                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" value="{{ user[2] }}" required>#}
@@ -19,24 +19,24 @@
                 </div>
 
             <div class="input-group">
-                <input class="input--style-3" type="email" placeholder="Email" name="email" value="{{ user[2] }}" required>
+                <input class="input--style-3" type="email" {% if lang == 'ru' %} placeholder="Электронная почта" {% else %} placeholder="Email" {% endif %} name="email" value="{{ user[2] }}" required>
             </div>
 {#            <div class="input-group">#}
 {#                <input class="input--style-3" type="tel" placeholder="Phone" name="phone" value="{{ user[3] }}" required>#}
 {#            </div>#}
             <div class="input-group">
-                <input class="input--style-3" type="text" placeholder="LinkedIn profile" value="{{ user[3] }}" name="socLink">
+                <input class="input--style-3" type="text" {% if lang == 'ru' %}placeholder="Профиль LinkedIn" {% else %} placeholder="LinkedIn profile" {% endif %} value="{{ user[3] }}" name="socLink">
 {#                <input class="input--style-3" type="text" pattern="(https?)?.*linkedin\.com.*" placeholder="LinkedIn profile" value="{{ user[3] }}" name="socLink" oninvalid="this.setCustomValidity('Your LinkedIn profile link')" required>#}
             </div>
 
             <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
-                    <h5 class="title" style="font-size: 16px; color: #cccccc">Role</h5>
+                    <h5 class="title" style="font-size: 16px; color: #cccccc">{% if lang == 'ru' %} Роль {% else %} Role {% endif %}</h5>
                     <select id="role" name="role" onchange="showAdditionalFields()">
-                        <option value="Investor" {% if user[4] == "Investor" or user[4] == ""%} selected="selected" {% endif %}>Investor</option>
-                        <option value="Startupper" {% if user[4] == "Startupper"%} selected="selected" {% endif %}>Startupper</option>
-                        <option value="HR" {% if user[4] == "HR"%} selected="selected" {% endif %}>HR</option>
-                        <option value="Employee" {% if user[4] == "Employee"%} selected="selected" {% endif %}>Employee</option>
+                        <option value="Investor" {% if user[4] == "Investor" or user[4] == ""%} selected="selected" {% endif %}>{% if lang == 'ru' %} Инвестор {% else %} Investor {% endif %}</option>
+                        <option value="Startupper" {% if user[4] == "Startupper"%} selected="selected" {% endif %}>{% if lang == 'ru' %} Стартаппер {% else %} Startupper {% endif %}</option>
+                        <option value="HR" {% if user[4] == "HR"%} selected="selected" {% endif %}>{% if lang == 'ru' %} HR {% else %} HR {% endif %}</option>
+                        <option value="Employee" {% if user[4] == "Employee"%} selected="selected" {% endif %}>{% if lang == 'ru' %} Работник {% else %} Employee {% endif %}</option>
                     </select>
                     <div class="select-dropdown"></div>
                 </div>
@@ -47,8 +47,8 @@
 {#        <div id="additionalFieldsInvestor" style="display: block;">#}
             <div class="input-container">
                 <div class="input-group">
-                    <input class="input--style-3" type="text" id="fields" placeholder="Fields" name="fields" value="{{ user[5]}}" required>
-                    <span id="othersHint" class="tooltiptext" >Please write all fields you are interested<p> in separating them with a comma</p></span>
+                    <input class="input--style-3" type="text" id="fields" {% if lang == 'ru' %}placeholder="Сферы" {% else %} placeholder="Fields" {% endif %} name="fields" value="{{ user[5]}}" required>
+                    <span id="othersHint" class="tooltiptext" >{% if lang == 'ru' %} Укажите все интересующие вас сферы<p>, разделив их запятой</p> {% else %} Please write all fields you are interested<p> in separating them with a comma</p> {% endif %}</span>
 {#                    <span id="startuppHint" class="tooltiptext" >You have chosen "Statupper" role, you should<p>write only  one field, if you write more, the </p><p> system will take first</p></span>#}
                 </div>
             </div>
@@ -76,18 +76,18 @@
 
             <div id="additionalFields" {% if user[4] == "Startupper" %}style="display: block;" {% else %} style="display: none;" {% endif %}>
                  <div class="input-group">
-                    <input class="input--style-3" id="startupName" type="text" placeholder="Startupp Name" name="startupName" value="{{ user[6] }}">
+                    <input class="input--style-3" id="startupName" type="text" {% if lang == 'ru' %} placeholder="Название стартапа" {% else %} placeholder="Startup Name" {% endif %}  name="startupName" value="{{ user[6] }}">
                 </div>
 
                  <div class="input-group">
-                    <input class="input--style-3" id="startupDescription" type="text" placeholder="Startupp Description" name="startupDescription" value="{{ user[7] }}">
+                    <input class="input--style-3" id="startupDescription" type="text" {% if lang == 'ru' %} placeholder="Описание стартапа" {% else %} placeholder="Startup Description" {% endif %} name="startupDescription" value="{{ user[7] }}">
                 </div>
             </div>
 
             <input type="hidden" name="userId" value="{{ user_id }}">
 
             <div class="p-t-10">
-                <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                <button class="btn btn--pill btn--green" type="submit">{% if lang == 'ru' %} Отправить {% else %} Submit {% endif %}</button>
             </div>
         </form>
     </div>
