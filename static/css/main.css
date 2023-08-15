@@ -121,6 +121,8 @@ textarea {
   border: none;
   resize: none;
   outline: none;
+  font-size: 14px;
+  font-family: inherit;
 }
 /* ==========================================================================
    #PAGE WRAPPER
