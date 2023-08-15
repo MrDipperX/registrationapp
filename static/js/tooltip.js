@@ -1,10 +1,22 @@
-const input = document.getElementById('fields');
-const tooltip = input.nextElementSibling;
+const interestedIn = document.getElementById('interestedIn');
+const interestedInHint = interestedIn.nextElementSibling;
 
-input.addEventListener('mouseover', () => {
-  tooltip.style.display = 'inline-block';
+interestedIn.addEventListener('mouseover', () => {
+  interestedInHint.style.display = 'inline-block';
 });
 
-input.addEventListener('mouseout', () => {
-  tooltip.style.display = 'none';
+interestedIn.addEventListener('mouseout', () => {
+  interestedInHint.style.display = 'none';
+});
+
+
+const workWith = document.getElementById('workWith');
+const workWithHint = workWith.nextElementSibling;
+
+workWith.addEventListener('mouseover', () => {
+  workWithHint.style.display = 'inline-block';
+});
+
+workWith.addEventListener('mouseout', () => {
+  workWithHint.style.display = 'none';
 });

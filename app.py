@@ -43,26 +43,25 @@ def home():
         elif request.method == 'POST':
             firstname = request.form['firstname']
             lastname = request.form['lastname']
+            about = request.form['about']
             # midname = request.form['midname']
             role = request.form['role']
             email = request.form['email']
             # phone = request.form['phone']
             soc_link = request.form['socLink']
             user_id = request.form['userId']
-            fields = request.form['fields']
-            fields = fields.split(",")
 
-            # if role == STARTUPPER:
-            #     fields = [fields[0]]
-            fields = [[field] for field in fields]
+            interested_in = [[field] for field in request.form['interestedIn'].split(",")]
+            work_with = [[field] for field in request.form['workWith'].split(",")]
 
             user_lang = db_conn.get_user_lang(user_id)
 
             code, code_time = db_conn.get_user_sec_info(user_id)
             now = time.time()
             if code_time >= now:
-                db_conn.update_user(user_id, firstname, lastname, role, email, soc_link)
-                field = db_conn.add_fields(fields)
+                db_conn.update_user(user_id, firstname, lastname, role, email, soc_link, about)
+                interested_in = db_conn.add_fields(interested_in)
+                work_with = db_conn.add_fields(work_with)
 
                 if role == STARTUPPER:
                     startupp_name = request.form['startupName']
@@ -70,13 +69,16 @@ def home():
 
                     db_conn.add_startup(user_id, startupp_name, startupp_desc)
 
-                db_conn.set_field(user_id, field)
+                db_conn.set_work_with(user_id, work_with)
+                db_conn.set_interested_in(user_id, interested_in)
+
                 db_conn.update_state(user_id, "finish")
 
                 return render_template('regFlask/success.html', code=code, lang=user_lang)
 
             return render_template('regFlask/return.html', bot=BOT_USERNAME, lang=user_lang)
-    except TypeError:
+    except TypeError as e:
+        logging.error(e)
         abort(400)
     except Exception as e:
         logging.error(e)

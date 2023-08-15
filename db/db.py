@@ -2,6 +2,8 @@ import psycopg2
 from config.config import HOST, PORT, DBNAME, PASSWORD, USER
 
 from utils.logging import logging
+from psycopg2 import sql
+
 
 
 class PgConn:
@@ -16,11 +18,11 @@ class PgConn:
             logging.error(error)
 
 # User section
-    def update_user(self, user_id, firstname, lastname, role, email, soc_link):
+    def update_user(self, user_id, firstname, lastname, role, email, soc_link, about):
         with self.conn:
             self.cur.execute("UPDATE users SET firstname = %s, lastname = %s, "
-                             "role = %s, email = %s, soc_link = %s WHERE tg_id = %s;",
-                             (firstname, lastname, role, email, soc_link, user_id))
+                             "role = %s, email = %s, soc_link = %s, about = %s WHERE tg_id = %s;",
+                             (firstname, lastname, role, email, soc_link, about, user_id))
             self.conn.commit()
 
     def update_state(self, user_id, text):
@@ -57,17 +59,24 @@ class PgConn:
     def get_user_full_info(self, user_id):
         with self.conn:
             self.cur.execute("SELECT string_agg(f.name, ', ') FROM fields f "
-                             "JOIN unnest((SELECT field FROM users WHERE tg_id = %s)) AS field_id "
+                             "JOIN unnest((SELECT intersted_in FROM users WHERE tg_id = %s)) AS field_id "
                              "ON f.id = field_id;", (user_id,))
             # field_names = [row[0] for row in self.cur.fetchall()]
-            fields = self.cur.fetchone()[0]
-            fields = fields if fields is not None else ""
+            interested_in = self.cur.fetchone()[0]
+            interested_in = interested_in if interested_in is not None else ""
 
-            self.cur.execute("SELECT firstname, lastname, email, soc_link, role "
+            self.cur.execute("SELECT string_agg(f.name, ', ') FROM fields f "
+                             "JOIN unnest((SELECT work_with FROM users WHERE tg_id = %s)) AS field_id "
+                             "ON f.id = field_id;", (user_id,))
+            # field_names = [row[0] for row in self.cur.fetchall()]
+            work_with = self.cur.fetchone()[0]
+            work_with = work_with if work_with is not None else ""
+
+            self.cur.execute("SELECT firstname, lastname, email, soc_link, role, about "
                              "FROM users WHERE tg_id = %s;", (user_id,))
 
             user_info = list(self.cur.fetchone())
-            user_info.append(fields)
+            user_info.extend([interested_in, work_with])
 
             self.cur.execute("SELECT name, description "
                              "FROM startups WHERE user_id = (SELECT id FROM users WHERE tg_id = %s);", (user_id,))
@@ -98,11 +107,18 @@ class PgConn:
 
             return paired_fields
 
-    def set_field(self, user_id, field):
+    def set_interested_in(self, user_id, field):
         with self.conn:
-            if type(field) == str:
-                field = [field]
-            self.cur.execute("UPDATE users SET field = %s WHERE tg_id = %s;", (field, user_id))
+            # if type(field) == str:
+            #     field = [field]
+            self.cur.execute(" UPDATE users SET intersted_in = %s WHERE tg_id = %s; ", (field, user_id))
+            self.conn.commit()
+
+    def set_work_with(self, user_id, field):
+        with self.conn:
+            # if type(field) == str:
+            #     field = [field]
+            self.cur.execute(" UPDATE users SET work_with = %s WHERE tg_id = %s; ", (field, user_id))
             self.conn.commit()
 
     def add_fields(self, values):

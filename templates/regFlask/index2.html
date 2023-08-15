@@ -17,6 +17,9 @@
 {#                    <input class="input--style-3" type="text" placeholder="MidName" name="midname" value="{{ user[2] }}" required>#}
 {#                </div>#}
                 </div>
+            <div class="input-group">
+                <textarea class="input--style-3" {% if lang == 'ru' %} placeholder="О себе" {% else %} placeholder="About yourself" {% endif %} cols="30" rows="1" name="about" required>{{ user[5] }}</textarea>
+            </div>
 
             <div class="input-group">
                 <input class="input--style-3" type="email" {% if lang == 'ru' %} placeholder="Электронная почта" {% else %} placeholder="Email" {% endif %} name="email" value="{{ user[2] }}" required>
@@ -47,8 +50,16 @@
 {#        <div id="additionalFieldsInvestor" style="display: block;">#}
             <div class="input-container">
                 <div class="input-group">
-                    <input class="input--style-3" type="text" id="fields" {% if lang == 'ru' %}placeholder="Сферы" {% else %} placeholder="Fields" {% endif %} name="fields" value="{{ user[5]}}" required>
-                    <span id="othersHint" class="tooltiptext" >{% if lang == 'ru' %} Укажите все интересующие вас сферы<p>, разделив их запятой</p> {% else %} Please write all fields you are interested<p> in separating them with a comma</p> {% endif %}</span>
+                    <input class="input--style-3" type="text" id="interestedIn" {% if lang == 'ru' %}placeholder="Интересующие сферы" {% else %} placeholder="Areas of interest" {% endif %} name="interestedIn" value="{{ user[6]}}" required>
+                    <span id="interestedInHint" class="tooltiptext" >{% if lang == 'ru' %} Напишите все интересующие вас сферы,<p> разделив их запятой</p> {% else %} Write all the areas you are interested in, <p> separating them with a comma</p> {% endif %}</span>
+{#                    <span id="startuppHint" class="tooltiptext" >You have chosen "Statupper" role, you should<p>write only  one field, if you write more, the </p><p> system will take first</p></span>#}
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-group">
+                    <input class="input--style-3" type="text" id="workWith" {% if lang == 'ru' %}placeholder="Рабочие сферы" {% else %} placeholder="Work areas" {% endif %} name="workWith" value="{{ user[7]}}" required>
+                    <span id="workWithHint" class="tooltiptext" >{% if lang == 'ru' %} Напишите сферы, в которых вы работаете,<p> разделив их запятой</p> {% else %} Write the areas in which you work, <p> separating them with a comma</p> {% endif %}</span>
 {#                    <span id="startuppHint" class="tooltiptext" >You have chosen "Statupper" role, you should<p>write only  one field, if you write more, the </p><p> system will take first</p></span>#}
                 </div>
             </div>
@@ -76,11 +87,11 @@
 
             <div id="additionalFields" {% if user[4] == "Startupper" %}style="display: block;" {% else %} style="display: none;" {% endif %}>
                  <div class="input-group">
-                    <input class="input--style-3" id="startupName" type="text" {% if lang == 'ru' %} placeholder="Название стартапа" {% else %} placeholder="Startup Name" {% endif %}  name="startupName" value="{{ user[6] }}">
+                    <input class="input--style-3" id="startupName" type="text" {% if lang == 'ru' %} placeholder="Название стартапа" {% else %} placeholder="Startup Name" {% endif %}  name="startupName" value="{{ user[8] }}">
                 </div>
 
                  <div class="input-group">
-                    <input class="input--style-3" id="startupDescription" type="text" {% if lang == 'ru' %} placeholder="Описание стартапа" {% else %} placeholder="Startup Description" {% endif %} name="startupDescription" value="{{ user[7] }}">
+                    <input class="input--style-3" id="startupDescription" type="text" {% if lang == 'ru' %} placeholder="Описание стартапа" {% else %} placeholder="Startup Description" {% endif %} name="startupDescription" value="{{ user[9] }}">
                 </div>
             </div>
 
